@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<!--
+================= دليل التعديل السريع =================
+استخدمي Ctrl+F وابحثي عن الكلمة اللي بين القوسين:
+
+1) العنوان الرئيسي ............ (الفرص الاستثمارية في تجمع)
+2) إجمالي الزوار يوميًا ....... (t-ben").textContent)
+3) إجمالي الموظفين ............ (t-emp").textContent)
+4) إيميل التقديم .............. (APPLY_EMAIL)
+5) قائمة الفرص ................ (const DATA)
+   كل سطر = فرصة: [النشاط, المستشفى, رقم الإعلان, المساحة, تاريخ الإعلان, آخر موعد, ملاحظة, رابط, رابط الخريطة]
+   النشاط: cafe = مقاهي، food = مطاعم، market = سوبرماركت، flower = ورد
+   التواريخ بصيغة: 2026-10-18
+6) أرقام كل مستشفى ............ (const SITES)
+   visitors = الزوار يوميًا، employees = الموظفين
+7) الألوان .................... (--navy) و (--sky)
+8) نص مربع التقديم الرسمي ..... (التقديم الرسمي يتم عبر)
+
+بعد أي تعديل: احفظي الملف، وارفعي المجلد كامل (index.html + logo.png) من Deploys في Netlify.
+=======================================================
+-->
+
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>فرص الاستثمار – تجمع القصيم الصحي</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=Nunito:wght@600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F0F0F0; --card:#FFFFFF; --ink:#144888; --text:#2B3A4F; --muted:#6F7F95;
+  --sky:#28AAE1; --navy:#144888; --navy2:#0F3A70; --line:#D6ECF8; --soft:#EAF6FC;
+  --warn:#C62828; --warnbg:#FDECEA; --ok:#1B7A4E; --okbg:#E6F4EC;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0C1A2E; --card:#132640; --ink:#8FD3F2; --text:#DCE7F5; --muted:#93A6C0;
+    --line:#1E3A5C; --soft:#16304F; --warnbg:#3A1A1C; --okbg:#143324;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0C1A2E; --card:#132640; --ink:#8FD3F2; --text:#DCE7F5; --muted:#93A6C0;
+  --line:#1E3A5C; --soft:#16304F; --warnbg:#3A1A1C; --okbg:#143324;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{
+  margin:0; min-height:100%; background:var(--bg); color:var(--text);
+  font-family:"Tajawal","Nunito",system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+.phone{position:relative; max-width:430px; min-height:100vh; margin:0 auto; background:var(--bg); overflow:hidden; padding-bottom:40px}
+.num{font-family:"Nunito","Tajawal",sans-serif; direction:ltr; unicode-bidi:isolate}
+
+.top{display:flex; align-items:center; justify-content:space-between; padding:18px 20px}
+.top img{height:46px; width:auto; display:block}
+.logo-box{background:transparent}
+.badge{font-size:12px; font-weight:700; color:#fff; background:var(--navy); padding:6px 12px; border-radius:999px}
+
+.hero{position:relative; margin:4px 16px 0; padding:26px 22px 24px; border-radius:22px; color:#fff;
+  background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 100%); overflow:hidden}
+.hero .accent{position:absolute; right:0; top:22px; width:6px; height:48px; background:var(--sky); border-radius:6px 0 0 6px}
+.hero h1{margin:0; font-weight:800; font-size:28px; line-height:1.35; position:relative}
+.hero p{margin:8px 0 0; font-size:15px; line-height:1.7; opacity:.9; position:relative; max-width:30ch}
+
+.kpis{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:14px 16px 0}
+.kpi{background:var(--card); border-radius:18px; padding:14px 16px; display:flex; align-items:center; gap:12px}
+.kpi.sky{background:var(--sky); color:#fff}
+.kpi .ico{width:40px; height:40px; border-radius:11px; background:#fff; display:grid; place-items:center; flex:none}
+.kpi:not(.sky) .ico{background:var(--navy)}
+.kpi .ico svg{width:22px; height:22px; stroke:var(--navy); fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round}
+.kpi:not(.sky) .ico svg{stroke:#fff}
+.kpi b{display:block; font-size:24px; line-height:1.1}
+.kpi:not(.sky) b{color:var(--ink)}
+.kpi span{font-size:13px; opacity:.9}
+
+.section-title{display:flex; align-items:center; gap:10px; margin:26px 20px 12px}
+.section-title i{width:5px; height:24px; border-radius:4px; background:var(--navy)}
+.section-title h2{margin:0; font-size:20px; font-weight:800; color:var(--ink)}
+
+.menu{display:flex; flex-direction:column; gap:12px; margin:0 16px}
+.pill{
+  width:100%; min-height:74px; border-radius:20px; border:0; cursor:pointer; text-align:right;
+  display:flex; align-items:center; gap:14px; padding:12px 14px; font-family:inherit; color:#fff;
+  background:var(--navy);
+  transition:transform .15s ease; -webkit-tap-highlight-color:transparent;
+}
+.pill:active{transform:scale(.98)}
+.pill:focus-visible{outline:3px solid var(--sky); outline-offset:3px}
+.pill .ico{width:48px; height:48px; border-radius:13px; background:#fff; display:grid; place-items:center; flex:none}
+.pill .ico svg{width:26px; height:26px; stroke:var(--navy); fill:none; stroke-width:1.9; stroke-linecap:round; stroke-linejoin:round}
+.pill .label{flex:1}
+.pill .label b{display:block; font-size:19px; font-weight:800}
+.pill .label small{font-size:13px; opacity:.88}
+.pill .count{font-size:22px; font-weight:800; min-width:36px; text-align:center}
+.pill .chev{width:18px; height:18px; stroke:#fff; fill:none; stroke-width:2.4; opacity:.8}
+
+.totals{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:14px 16px 0}
+.total{background:var(--card); color:var(--text); border-radius:18px; padding:16px}
+.total .ico{width:40px; height:40px; border-radius:11px; background:var(--navy); display:grid; place-items:center}
+.total .ico svg{width:22px; height:22px; stroke:#fff; fill:none; stroke-width:1.9; stroke-linecap:round; stroke-linejoin:round}
+.total b{display:block; font-size:26px; font-weight:800; margin-top:12px; line-height:1.1; text-align:right; color:var(--ink)}
+.total span{font-size:13px; color:var(--muted)}
+.lead{margin:0 16px; background:var(--card); border-radius:20px; padding:18px 16px; display:flex; flex-direction:column; gap:14px}
+.hp{position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden}
+.f{display:flex; flex-direction:column; gap:6px; border:0; margin:0; padding:0; min-width:0}
+.f span,.f legend{font-size:14px; font-weight:700; color:var(--ink); padding:0}
+.f em{color:var(--warn); font-style:normal}
+.f input,.f select,.f textarea{
+  width:100%; font:500 16px/1.4 inherit; font-family:inherit; color:var(--text); background:var(--bg);
+  border:1.5px solid var(--line); border-radius:12px; padding:11px 12px; -webkit-appearance:none; appearance:none}
+.f select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%236F7F95' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-position:14px 50%; background-repeat:no-repeat; padding-left:36px}
+.f input:focus,.f select:focus,.f textarea:focus{outline:none; border-color:var(--sky); box-shadow:0 0 0 3px rgba(40,170,225,.2)}
+.f textarea{resize:vertical}
+.row2{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+@media (max-width:360px){.row2{grid-template-columns:1fr}}
+.checks{display:flex; gap:8px; flex-wrap:wrap; margin-top:6px}
+.ck{position:relative}
+.ck input{position:absolute; opacity:0; inset:0; margin:0; cursor:pointer}
+.ck span{display:block; padding:8px 16px; border-radius:999px; border:1.5px solid var(--line); background:var(--bg); font-size:14px; font-weight:700; color:var(--ink)}
+.ck input:checked + span{background:var(--navy); border-color:var(--navy); color:#fff}
+.ck input:focus-visible + span{outline:3px solid var(--sky); outline-offset:2px}
+.consent{display:flex; gap:10px; align-items:flex-start; font-size:13px; line-height:1.6; color:var(--muted)}
+.consent input{width:20px; height:20px; margin-top:2px; accent-color:var(--navy); flex:none}
+.submit{height:50px; border:0; border-radius:14px; background:var(--navy); color:#fff; font:800 17px/1 inherit; font-family:inherit; cursor:pointer}
+.submit:disabled{opacity:.6; cursor:default}
+.submit:focus-visible{outline:3px solid var(--sky); outline-offset:2px}
+.msg{margin:0; font-size:14px; font-weight:700; text-align:center; min-height:1em}
+.msg.ok{color:var(--ok)} .msg.err{color:var(--warn)}
+.note{margin:18px 16px 0; background:var(--card); border:1.5px solid var(--line); border-radius:18px; padding:14px 16px; display:flex; gap:12px; align-items:center}
+.note .ico{width:40px; height:40px; border-radius:11px; background:var(--navy); display:grid; place-items:center; flex:none}
+.note .ico svg{width:22px; height:22px; stroke:#fff; fill:none; stroke-width:1.9; stroke-linecap:round; stroke-linejoin:round}
+.note p{margin:0; font-size:14px; line-height:1.6}
+.note p b{color:var(--ink)}
+.note .mail{color:var(--sky); font-weight:700; text-decoration:underline}
+
+/* Sheet */
+.scrim{position:fixed; inset:0; background:rgba(12,30,60,.5); opacity:0; pointer-events:none; transition:opacity .25s; z-index:10}
+.scrim.open{opacity:1; pointer-events:auto}
+.sheet{position:fixed; left:0; right:0; bottom:0; margin:0 auto; max-width:430px; height:88%;
+  background:var(--bg); border-radius:24px 24px 0 0; z-index:11; transform:translateY(100%);
+  transition:transform .32s cubic-bezier(.2,.8,.2,1); display:flex; flex-direction:column;
+  padding-bottom:env(safe-area-inset-bottom,0px)}
+.sheet.open{transform:translateY(0)}
+.sheet-head{padding:10px 18px 14px; background:var(--navy); color:#fff; border-radius:24px 24px 0 0}
+.grab{width:42px; height:5px; border-radius:9px; background:rgba(255,255,255,.4); margin:0 auto 12px}
+.sheet-row{display:flex; align-items:center; gap:12px}
+.sheet-row .ico{width:44px; height:44px; border-radius:12px; background:#fff; display:grid; place-items:center; flex:none}
+.sheet-row .ico svg{width:24px; height:24px; stroke:var(--navy); fill:none; stroke-width:1.9; stroke-linecap:round; stroke-linejoin:round}
+.sheet-row .t{flex:1}
+.sheet-head h2{margin:0; font-size:21px; font-weight:800}
+.sheet-head small{font-size:13px; opacity:.85}
+.close{width:38px; height:38px; border-radius:50%; border:0; background:rgba(255,255,255,.16); color:#fff; font-size:18px; cursor:pointer; flex:none}
+.close:focus-visible{outline:2px solid #fff; outline-offset:2px}
+.filters{display:flex; gap:8px; margin-top:14px; overflow-x:auto; scrollbar-width:none}
+.filters::-webkit-scrollbar{display:none}
+.chip{flex:none; border:1px solid rgba(255,255,255,.35); background:transparent; color:#fff; padding:6px 14px; border-radius:999px; font:500 13px/1.4 inherit; font-family:inherit; cursor:pointer}
+.chip.on{background:var(--sky); border-color:var(--sky)}
+.list{flex:1; overflow-y:auto; padding:14px 14px 24px; display:flex; flex-direction:column; gap:12px}
+
+.opp{background:var(--card); border-radius:18px; padding:16px; border:1.5px solid transparent}
+.opp-top{display:flex; justify-content:space-between; align-items:flex-start; gap:10px}
+.opp h3{margin:0; font-size:17px; font-weight:800; color:var(--ink); line-height:1.45}
+.tag{font-size:13px; color:var(--muted); margin-top:2px}
+.area{flex:none; text-align:center; background:var(--sky); color:#fff; border-radius:13px; padding:6px 10px; min-width:66px}
+.area b{display:block; font-size:18px}
+.area span{font-size:11px}
+.facts{display:grid; grid-template-columns:1fr 1fr; gap:10px 12px; margin-top:14px; padding-top:12px; border-top:1px dashed var(--line)}
+.fact{font-size:12px; color:var(--muted)}
+.fact div{font-size:14px; color:var(--text); font-weight:700; margin-top:2px; text-align:right}
+.stats{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:14px}
+.stat{display:flex; align-items:center; gap:10px; background:var(--soft); border-radius:13px; padding:10px 12px}
+.sico{width:34px; height:34px; border-radius:10px; background:var(--navy); display:grid; place-items:center; flex:none}
+.sico svg{width:19px; height:19px; stroke:#fff; fill:none; stroke-width:1.9; stroke-linecap:round; stroke-linejoin:round}
+.stat b{display:block; font-size:17px; color:var(--ink); line-height:1.2}
+.stat b.tbd{color:var(--muted)}
+.stat small{font-size:12px; color:var(--muted)}
+.left{margin-top:12px; font-size:13px; font-weight:700; display:inline-block; padding:4px 11px; border-radius:999px}
+.left.soon{background:var(--warnbg); color:var(--warn)}
+.left.ok{background:var(--okbg); color:var(--ok)}
+.left.gone{background:var(--line); color:var(--muted)}
+.actions{display:flex; gap:8px; margin-top:14px}
+.btn{flex:1; height:42px; border-radius:12px; font:700 14px/1 inherit; font-family:inherit; cursor:pointer; display:flex; align-items:center; justify-content:center; text-decoration:none}
+.btn.primary{background:var(--navy); color:#fff; border:0}
+.btn.primary[aria-disabled="true"]{background:var(--line); color:var(--muted); cursor:default}
+.btn.ghost{background:var(--soft); color:var(--ink); border:0}
+.btn:focus-visible{outline:3px solid var(--sky); outline-offset:2px}
+.btn.map{margin-top:14px; width:100%; flex:none; gap:8px; background:var(--card); color:var(--ink); border:1.5px solid var(--sky)}
+.btn.map svg{width:18px; height:18px; stroke:var(--sky); fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round}
+.toast{position:fixed; left:50%; bottom:calc(24px + env(safe-area-inset-bottom,0px)); transform:translate(-50%,20px); background:var(--navy); color:#fff; padding:10px 18px; border-radius:999px; font-size:14px; opacity:0; transition:all .2s; z-index:20; pointer-events:none}
+.toast.show{opacity:1; transform:translate(-50%,0)}
+@media (prefers-reduced-motion: reduce){*{transition:none !important}}
+</style>
+</head>
+<body>
+<main class="phone">
+  <header class="top">
+    <div class="logo-box"><img src="logo.png" alt="تجمع القصيم الصحي"></div>
+  </header>
+
+  <section class="hero">
+    <span class="accent"></span>
+    <h1>الفرص الاستثمارية في تجمع القصيم الصحي</h1>
+  </section>
+
+  <div class="kpis">
+    <div class="kpi">
+      <div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg></div>
+      <div><b class="num" id="k-total"></b><span>فرصة متاحة</span></div>
+    </div>
+    <div class="kpi">
+      <div class="ico"><svg viewBox="0 0 24 24"><path d="M4 21V5a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1v16M15 9h4a1 1 0 0 1 1 1v11M2 21h20M8 8h3M8 12h3M8 16h3M9.5 6.5v3"/></svg></div>
+      <div><b class="num" id="k-sites"></b><span>منشأة صحية</span></div>
+    </div>
+  </div>
+
+  <div class="totals">
+    <div class="total">
+      <div class="ico"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.5a3.5 3.5 0 0 1 0 7M18.5 20a6.5 6.5 0 0 0-2.5-5.1"/></svg></div>
+      <b class="num" id="t-ben"></b>
+      <span>إجمالي الزوار (يوميًا)</span>
+    </div>
+    <div class="total">
+      <div class="ico"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><circle cx="12" cy="10" r="3"/><path d="M7.5 17.5a4.5 4.5 0 0 1 9 0M10 3v2h4V3"/></svg></div>
+      <b class="num" id="t-emp"></b>
+      <span>إجمالي الموظفين</span>
+    </div>
+  </div>
+
+  <div class="section-title"><i></i><h2>الفرص المتاحة</h2></div>
+
+  <nav class="menu" aria-label="أنواع الفرص">
+    <button class="pill" data-cat="cafe">
+      <span class="ico"><svg viewBox="0 0 24 24"><path d="M4 9h13v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V9z"/><path d="M17 10h1.5a2.5 2.5 0 0 1 0 5H17M8 2.5c-.6.8-.6 1.7 0 2.5M12 2.5c-.6.8-.6 1.7 0 2.5M3 22h15"/></svg></span>
+      <span class="label"><b>مقاهي</b></span>
+      <span class="count num" id="c-cafe"></span>
+      <svg class="chev" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>
+    </button>
+    <button class="pill" data-cat="food">
+      <span class="ico"><svg viewBox="0 0 24 24"><path d="M6 2v7a2 2 0 0 0 2 2v11M10 2v7a2 2 0 0 1-2 2M8 2v5M17 22V2c-2.2 1.3-3 3.8-3 7v4h3"/></svg></span>
+      <span class="label"><b>مطاعم</b></span>
+      <span class="count num" id="c-food"></span>
+      <svg class="chev" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>
+    </button>
+    <button class="pill" data-cat="shop">
+      <span class="ico"><svg viewBox="0 0 24 24"><path d="M5 8h14l-1.2 12.1a1 1 0 0 1-1 .9H7.2a1 1 0 0 1-1-.9L5 8z"/><path d="M9 10V6a3 3 0 0 1 6 0v4"/></svg></span>
+      <span class="label"><b>محلات</b></span>
+      <span class="count num" id="c-shop"></span>
+      <svg class="chev" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>
+    </button>
+  </nav>
+
+  <div class="section-title"><i></i><h2>سجّل اهتمامك</h2></div>
+
+  <form class="lead" id="lead" name="interest" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+    <input type="hidden" name="form-name" value="interest">
+    <p class="hp"><label>لا تعبّئ هذا الحقل <input name="bot-field"></label></p>
+
+    <label class="f"><span>الاسم الكامل</span>
+      <input name="name" autocomplete="name"></label>
+    <label class="f"><span>اسم المشروع</span>
+      <input name="project"></label>
+    <label class="f"><span>رقم الجوال</span>
+      <input name="phone" type="tel" inputmode="tel" placeholder="05xxxxxxxx" dir="ltr"></label>
+
+    <fieldset class="f">
+      <legend>النشاط المهتم به</legend>
+      <div class="checks">
+        <label class="ck"><input type="checkbox" name="activity" value="مقاهي"><span>مقاهي</span></label>
+        <label class="ck"><input type="checkbox" name="activity" value="مطاعم"><span>مطاعم</span></label>
+        <label class="ck"><input type="checkbox" name="activity" value="محلات"><span>محلات</span></label>
+      </div>
+    </fieldset>
+
+    <label class="f"><span>المنشأة المفضلة</span>
+      <select name="site">
+          <option value="">أي منشأة</option>
+          <option value="مستشفى الملك سعود بعنيزة">مستشفى الملك سعود بعنيزة</option>
+          <option value="مستشفى الولادة والأطفال">مستشفى الولادة والأطفال</option>
+          <option value="مستشفى البكيرية">مستشفى البكيرية</option>
+          <option value="مستشفى بريدة المركزي">مستشفى بريدة المركزي</option>
+          <option value="مركز السكري">مركز السكري</option>
+          <option value="مستشفى الرس">مستشفى الرس</option>
+          <option value="مستشفى عيون الجواء">مستشفى عيون الجواء</option>
+          <option value="مستشفى المذنب">مستشفى المذنب</option>
+          <option value="مستشفى الأسياح">مستشفى الأسياح</option>
+          <option value="مستشفى إرادة والصحة النفسية">مستشفى إرادة والصحة النفسية</option>
+          <option value="مستشفى الملك فهد التخصصي">مستشفى الملك فهد التخصصي</option>
+      </select></label>
+
+    <label class="f"><span>ملاحظات</span>
+      <textarea name="notes" rows="3"></textarea></label>
+
+    <label class="consent"><input type="checkbox" name="consent" value="موافق" required>
+      <span>أوافق على استخدام بياناتي للتواصل معي بخصوص هذه الفرص فقط، وفق نظام حماية البيانات الشخصية.</span></label>
+
+    <button class="submit" type="submit">إرسال</button>
+    <p class="msg" id="lead-msg" role="status"></p>
+  </form>
+
+  <div class="note">
+    <div class="ico"><svg viewBox="0 0 24 24"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.4 1 1.1 1 1.8V16h5v-.3c0-.7.4-1.4 1-1.8A6 6 0 0 0 12 3z"/></svg></div>
+    <p>التقديم الرسمي يتم عبر <a class="mail" href="mailto:QHC-RDINV@MOH.GOV.SA">البريد الإلكتروني</a> باستخدام رقم الإعلان الموضح في كل فرصة.</p>
+  </div>
+</main>
+
+<div class="scrim" id="scrim"></div>
+<section class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title">
+  <header class="sheet-head">
+    <div class="grab"></div>
+    <div class="sheet-row">
+      <span class="ico" id="sheet-ico"></span>
+      <div class="t"><h2 id="sheet-title"></h2><small id="sheet-sub"></small></div>
+      <button class="close" id="close" aria-label="إغلاق">✕</button>
+    </div>
+    <div class="filters" id="filters"></div>
+  </header>
+  <div class="list" id="list"></div>
+</section>
+<div class="toast" id="toast"></div>
+
+<script>
+// [النشاط, الموقع, رقم الإعلان, المساحة م², تاريخ الإعلان, آخر موعد, ملاحظة, رابط الفرصة, رابط الخريطة]
+// ضع رابط كل فرصة في الخانة الأخيرة بين علامتي التنصيص
+const DATA = [
+  ["cafe","مستشفى الملك سعود بعنيزة","06-26-183737-37010","30","2026-09-16","2026-10-18","","","https://maps.app.goo.gl/b3MEb72oa6K62sxg6"],
+  ["cafe","مستشفى الولادة والأطفال","06-26-183737-37018","20.16","2026-09-17","2026-10-18","","","https://maps.app.goo.gl/xp7wWnUNnWgostMo6"],
+  ["cafe","مستشفى البكيرية","06-26-183737-37020","25","2026-09-17","2026-10-18","","","https://maps.app.goo.gl/kihVrup2i7iAPVCj6"],
+  ["cafe","مستشفى بريدة المركزي","26-09-2443110","60","2026-09-20","2026-10-25","+ 24 م² جلسات خارجية","","https://maps.app.goo.gl/4sppKyNhdY687VSB9"],
+  ["cafe","مركز السكري","06-26-183737-41006","30","2026-09-20","2026-10-25","","","https://maps.app.goo.gl/7c8b9vWa1ggYpTWD8"],
+  ["cafe","مستشفى الرس","26-09-2443526","66","2026-09-20","2026-10-25","","","https://maps.app.goo.gl/bDw8rAGvV8XNeHXC9"],
+  ["cafe","مستشفى عيون الجواء","06-26-183737-41012","15","2026-09-21","2026-10-26","","","https://maps.app.goo.gl/Wg9fxGZojYuZJb7C6"],
+  ["cafe","مستشفى المذنب","26-09-2444170","33","2026-09-21","2026-10-26","","","https://maps.app.goo.gl/hwHV96fyDQrLcs6d7"],
+  ["cafe","مستشفى الأسياح","06-26-183737-43004","15","2026-09-21","2026-10-26","","","https://maps.app.goo.gl/8iRKvuJP9SyFtu5YA"],
+  ["food","مركز السكري","06-26-183737-41010","40","2026-09-21","2026-10-26","","","https://maps.app.goo.gl/7c8b9vWa1ggYpTWD8"],
+  ["food","مستشفى الملك سعود بعنيزة","26-09-2445638","16","2026-09-22","2026-10-27","","","https://maps.app.goo.gl/b3MEb72oa6K62sxg6"],
+  ["food","مستشفى الولادة والأطفال","06-26-183737-44004","20.16","2026-09-22","2026-10-27","","","https://maps.app.goo.gl/xp7wWnUNnWgostMo6"],
+  ["food","مستشفى المذنب","06-26-183737-44005","4×5","2026-09-22","2026-10-27","","","https://maps.app.goo.gl/hwHV96fyDQrLcs6d7"],
+  ["food","مستشفى الرس","06-26-183737-44006","40","2026-09-22","2026-10-27","","","https://maps.app.goo.gl/bDw8rAGvV8XNeHXC9"],
+  ["food","مستشفى بريدة المركزي","06-26-183737-44007","40","2026-09-22","2026-10-27","","","https://maps.app.goo.gl/4sppKyNhdY687VSB9"],
+  ["market","مستشفى بريدة المركزي","26-09-2448107","50","2026-09-27","2026-10-28","","","https://maps.app.goo.gl/4sppKyNhdY687VSB9"],
+  ["market","مستشفى الملك سعود بعنيزة","06-26-183737-47001","112.13","2026-09-27","2026-10-28","","","https://maps.app.goo.gl/b3MEb72oa6K62sxg6"],
+  ["market","مستشفى الرس","06-26-183737-47004","50","2026-09-27","2026-10-28","","","https://maps.app.goo.gl/bDw8rAGvV8XNeHXC9"],
+  ["market","مستشفى إرادة والصحة النفسية","06-26-183737-47003","25","2026-09-27","2026-10-28","","","https://maps.app.goo.gl/n7BWypWKizra8qAi7"],
+  ["market","مستشفى عيون الجواء","06-26-183737-49001","300","2026-09-27","2026-10-28","","","https://maps.app.goo.gl/Wg9fxGZojYuZJb7C6"],
+  ["market","مستشفى الأسياح","06-26-183737-49002","50","2026-09-27","2026-10-29","","","https://maps.app.goo.gl/8iRKvuJP9SyFtu5YA"],
+  ["market","مستشفى المذنب","06-26-183737-49003","95","2026-09-27","2026-10-29","","","https://maps.app.goo.gl/hwHV96fyDQrLcs6d7"],
+  ["flower","مستشفى الملك فهد التخصصي","06-26-183737-50002","36","2026-09-27","2026-11-01","","","https://maps.app.goo.gl/QHL8Sak3CiQjuL2P6"],
+  ["flower","مستشفى الملك سعود بعنيزة","06-26-183737-47006","16","2026-09-27","2026-10-29","","","https://maps.app.goo.gl/Rgzfysg8YysJ37vB8"],
+  ["flower","مستشفى الولادة والأطفال","06-26-183737-47007","20.16","2026-09-27","2026-10-29","","","https://maps.app.goo.gl/fKfuTs88GRsnYGsC8"],
+  ["flower","مستشفى الرس","06-26-183737-50001","4×4","2026-09-27","2026-10-29","","","https://maps.app.goo.gl/bDw8rAGvV8XNeHXC9"],
+  ["flower","مستشفى الملك فهد التخصصي","06-26-183737-50003","36","2026-09-28","2026-11-01","","","https://maps.app.goo.gl/QHL8Sak3CiQjuL2P6"]
+];
+// عدد المستفيدين والموظفين والزوار اليومي لكل منشأة (الزوار يوميًا = (OPD+IP+ER) ÷ 365) (عبّي الأرقام بين علامتي التنصيص)
+const SITES={
+  "مستشفى الملك سعود بعنيزة":{beneficiaries:"400,000",employees:"1,600",visitors:"+730"},
+  "مستشفى الولادة والأطفال":{beneficiaries:"300,000",employees:"1,600",visitors:"+620"},
+  "مستشفى البكيرية":{beneficiaries:"170,000",employees:"650",visitors:"+320"},
+  "مستشفى بريدة المركزي":{beneficiaries:"290,000",employees:"1,700",visitors:"+550"},
+  "مركز السكري":{beneficiaries:"",employees:"300",visitors:"+1,000"},
+  "مستشفى الرس":{beneficiaries:"250,000",employees:"1,500",visitors:"+550"},
+  "مستشفى عيون الجواء":{beneficiaries:"95,000",employees:"500",visitors:"+180"},
+  "مستشفى المذنب":{beneficiaries:"100,000",employees:"600",visitors:"+170"},
+  "مستشفى الأسياح":{beneficiaries:"100,000",employees:"300",visitors:"+150"},
+  "مستشفى إرادة والصحة النفسية":{beneficiaries:"",employees:"",visitors:""},
+  "مستشفى الملك فهد التخصصي":{beneficiaries:"290,000",employees:"2,400",visitors:""}
+};
+const APPLY_EMAIL="QHC-RDINV@MOH.GOV.SA";
+const TYPE={cafe:"مقهى",food:"مطعم",market:"سوبرماركت",flower:"محل ورد"};
+const ICONS={};
+document.querySelectorAll(".pill").forEach(p=>ICONS[p.dataset.cat]=p.querySelector(".ico").innerHTML);
+const CATS={cafe:{title:"المقاهي",types:["cafe"]},food:{title:"المطاعم",types:["food"]},shop:{title:"المحلات",types:["market","flower"]}};
+const opps=DATA.map(r=>({type:r[0],site:r[1],ad:r[2],area:r[3],pub:r[4],due:r[5],extra:r[6],link:r[7],map:r[8]||""}));
+const $=id=>document.getElementById(id);
+const fmt=d=>d.split("-").reverse().join("/");
+function daysLeft(due){const t=new Date();t.setHours(0,0,0,0);return Math.round((new Date(due+"T00:00:00")-t)/86400000)}
+const sum=f=>Object.values(SITES).reduce((a,s)=>a+(parseInt(String(s[f]||"").replace(/[^0-9]/g,""))||0),0);
+const rnd=(v,step)=>(Math.round(v/step)*step).toLocaleString("en-US");
+$("t-emp").textContent="+"+rnd(sum("employees"),1000);
+$("t-ben").textContent="+15,000";
+$("k-total").textContent=opps.length;
+$("k-sites").textContent=new Set(opps.map(o=>o.site)).size;
+Object.keys(CATS).forEach(k=>$("c-"+k).textContent=opps.filter(o=>CATS[k].types.includes(o.type)).length);
+
+let current=null,filter="all",lastBtn=null;
+function render(){
+  const cat=CATS[current];
+  let items=opps.filter(o=>cat.types.includes(o.type));
+  const sites=[...new Set(items.map(o=>o.site))];
+  $("sheet-ico").innerHTML=ICONS[current];
+  $("sheet-title").textContent=cat.title;
+  $("sheet-sub").textContent=items.length+" فرصة متاحة";
+  $("filters").innerHTML=["all",...sites].map(s=>`<button class="chip ${s===filter?"on":""}" data-f="${s}">${s==="all"?"الكل":s.replace("مستشفى ","")}</button>`).join("");
+  if(filter!=="all")items=items.filter(o=>o.site===filter);
+  items.sort((a,b)=>a.due.localeCompare(b.due));
+  $("list").innerHTML=items.map(o=>{
+    const s=SITES[o.site]||{};
+    const val=v=>v?`<b class="num">${v}</b>`:`<b class="tbd">—</b>`;
+    const subj=`طلب تقديم على فرصة: ${TYPE[o.type]} - ${o.site} (${o.ad})`;
+    const body=`السلام عليكم،\n\nأرغب بالتقديم على الفرصة التالية:\nالنشاط: ${TYPE[o.type]}\nالموقع: ${o.site}\nرقم الإعلان: ${o.ad}\n\nالاسم:\nاسم المشروع:\nرقم الجوال:\n`;
+    const link=`<a class="btn primary" href="mailto:${APPLY_EMAIL}?subject=${encodeURIComponent(subj)}&body=${encodeURIComponent(body)}">قدّم على الفرصة</a>`;
+    return `<article class="opp">
+      <div class="opp-top">
+        <div><h3>${o.site}</h3><div class="tag">${TYPE[o.type]}${o.extra?" · "+o.extra:""}</div></div>
+        <div class="area"><b class="num">${o.area}</b><span>م²</span></div>
+      </div>
+      <div class="stats">
+        <div class="stat"><span class="sico"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.5a3.5 3.5 0 0 1 0 7M18.5 20a6.5 6.5 0 0 0-2.5-5.1"/></svg></span><div>${val(s.visitors)}<small>الزوار (يوميًا)</small></div></div>
+        <div class="stat"><span class="sico"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><circle cx="12" cy="10" r="3"/><path d="M7.5 17.5a4.5 4.5 0 0 1 9 0M10 3v2h4V3"/></svg></span><div>${val(s.employees)}<small>الموظفين</small></div></div>
+      </div>
+      <div class="facts">
+        <div class="fact">رقم الإعلان<div class="num">${o.ad}</div></div>
+        <div class="fact">آخر موعد للتقديم<div class="num">${fmt(o.due)}</div></div>
+      </div>
+      ${o.map?`<a class="btn map" href="${o.map}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>الموقع على الخريطة</a>`:""}
+      <div class="actions">${link}<button class="btn ghost" data-copy="${o.ad}">نسخ رقم الإعلان</button></div>
+    </article>`;
+  }).join("");
+}
+function openSheet(k,btn){current=k;filter="all";lastBtn=btn;render();$("list").scrollTop=0;$("sheet").classList.add("open");$("scrim").classList.add("open");document.body.style.overflow="hidden";$("close").focus()}
+function closeSheet(){$("sheet").classList.remove("open");$("scrim").classList.remove("open");document.body.style.overflow="";if(lastBtn)lastBtn.focus()}
+document.querySelectorAll(".pill").forEach(b=>b.addEventListener("click",()=>openSheet(b.dataset.cat,b)));
+$("close").onclick=closeSheet;$("scrim").onclick=closeSheet;
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeSheet()});
+$("filters").addEventListener("click",e=>{const c=e.target.closest(".chip");if(!c)return;filter=c.dataset.f;render()});
+function toast(m){const t=$("toast");t.textContent=m;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),1600)}
+$("list").addEventListener("click",async e=>{
+  const b=e.target.closest("[data-copy]");if(!b)return;const v=b.dataset.copy;
+  try{await navigator.clipboard.writeText(v);toast("تم نسخ رقم الإعلان")}
+  catch(err){try{const ta=document.createElement("textarea");ta.value=v;document.body.appendChild(ta);ta.select();document.execCommand("copy");ta.remove();toast("تم نسخ رقم الإعلان")}catch(e2){toast(v)}}
+});
+
+const lead=$("lead"), leadMsg=$("lead-msg");
+lead.addEventListener("submit",async e=>{
+  e.preventDefault();
+  const btn=lead.querySelector(".submit"); btn.disabled=true; leadMsg.className="msg"; leadMsg.textContent="جاري الإرسال…";
+  try{
+    const res=await fetch("/",{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},
+      body:new URLSearchParams(new FormData(lead)).toString()});
+    if(!res.ok) throw new Error(res.status);
+    lead.reset(); leadMsg.className="msg ok"; leadMsg.textContent="تم استلام طلبك، وبنتواصل معك قريبًا. شكرًا لك!";
+  }catch(err){
+    // بديل مضمون: يفتح رسالة بريد جاهزة فيها بيانات الفورم
+    const fd=new FormData(lead), g=k=>fd.getAll(k).filter(Boolean).join("، ")||"—";
+    const body=`السلام عليكم،\n\nأرغب بتسجيل اهتمامي بالفرص الاستثمارية:\n\nالاسم: ${g("name")}\nاسم المشروع: ${g("project")}\nرقم الجوال: ${g("phone")}\nالنشاط المهتم به: ${g("activity")}\nالمنشأة المفضلة: ${g("site")}\nملاحظات: ${g("notes")}\n`;
+    location.href=`mailto:${APPLY_EMAIL}?subject=${encodeURIComponent("تسجيل اهتمام بالفرص الاستثمارية")}&body=${encodeURIComponent(body)}`;
+    leadMsg.className="msg ok"; leadMsg.textContent="فتحنا لك رسالة بريد جاهزة بالبيانات، اضغط إرسال من تطبيق البريد.";
+  }finally{ btn.disabled=false; }
+});
+</script>
+</body>
+</html>
