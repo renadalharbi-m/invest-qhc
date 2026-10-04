@@ -332,7 +332,7 @@ const DATA = [
   ["cafe","مستشفى الملك سعود بعنيزة","06-26-183737-37010","30","2026-09-16","2026-10-18","","","https://maps.app.goo.gl/b3MEb72oa6K62sxg6"],
   ["cafe","مستشفى الولادة والأطفال","06-26-183737-37018","20.16","2026-09-17","2026-10-18","","","https://maps.app.goo.gl/xp7wWnUNnWgostMo6"],
   ["cafe","مستشفى البكيرية","06-26-183737-37020","25","2026-09-17","2026-10-18","","","https://maps.app.goo.gl/kihVrup2i7iAPVCj6"],
-  ["cafe","مستشفى بريدة المركزي","26-09-2443110","60","2026-09-20","2026-10-25","+ 24 م² جلسات خارجية","","https://maps.app.goo.gl/4sppKyNhdY687VSB9"],
+  ["cafe","مستشفى بريدة المركزي","26-09-2443110","60","2026-09-20","2026-10-25","+ 24 م² جلسات خارجية","","https://maps.app.goo.gl/p7v44Pg8jiVXmdPN6"],
   ["cafe","مركز السكري","06-26-183737-41006","30","2026-09-20","2026-10-25","","","https://maps.app.goo.gl/7c8b9vWa1ggYpTWD8"],
   ["cafe","مستشفى الرس","26-09-2443526","66","2026-09-20","2026-10-25","","","https://maps.app.goo.gl/bDw8rAGvV8XNeHXC9"],
   ["cafe","مستشفى عيون الجواء","06-26-183737-41012","15","2026-09-21","2026-10-26","","","https://maps.app.goo.gl/Wg9fxGZojYuZJb7C6"],
@@ -343,8 +343,8 @@ const DATA = [
   ["food","مستشفى الولادة والأطفال","06-26-183737-44004","20.16","2026-09-22","2026-10-27","","","https://maps.app.goo.gl/xp7wWnUNnWgostMo6"],
   ["food","مستشفى المذنب","06-26-183737-44005","4×5","2026-09-22","2026-10-27","","","https://maps.app.goo.gl/hwHV96fyDQrLcs6d7"],
   ["food","مستشفى الرس","06-26-183737-44006","40","2026-09-22","2026-10-27","","","https://maps.app.goo.gl/bDw8rAGvV8XNeHXC9"],
-  ["food","مستشفى بريدة المركزي","06-26-183737-44007","40","2026-09-22","2026-10-27","","","https://maps.app.goo.gl/4sppKyNhdY687VSB9"],
-  ["market","مستشفى بريدة المركزي","26-09-2448107","50","2026-09-27","2026-10-28","","","https://maps.app.goo.gl/4sppKyNhdY687VSB9"],
+  ["food","مستشفى بريدة المركزي","06-26-183737-44007","40","2026-09-22","2026-10-27","","","https://maps.app.goo.gl/TNrtoLnPXKbEKSKJ9"],
+  ["market","مستشفى بريدة المركزي","26-09-2448107","50","2026-09-27","2026-10-28","","","https://maps.app.goo.gl/TNrtoLnPXKbEKSKJ9"],
   ["market","مستشفى الملك سعود بعنيزة","06-26-183737-47001","112.13","2026-09-27","2026-10-28","","","https://maps.app.goo.gl/b3MEb72oa6K62sxg6"],
   ["market","مستشفى الرس","06-26-183737-47004","50","2026-09-27","2026-10-28","","","https://maps.app.goo.gl/bDw8rAGvV8XNeHXC9"],
   ["market","مستشفى إرادة والصحة النفسية","06-26-183737-47003","25","2026-09-27","2026-10-28","","","https://maps.app.goo.gl/n7BWypWKizra8qAi7"],
@@ -359,16 +359,16 @@ const DATA = [
 ];
 // عدد المستفيدين والموظفين والزوار اليومي لكل منشأة (الزوار يوميًا = (OPD+IP+ER) ÷ 365) (عبّي الأرقام بين علامتي التنصيص)
 const SITES={
-  "مستشفى الملك سعود بعنيزة":{beneficiaries:"400,000",employees:"1,600",visitors:"+730"},
-  "مستشفى الولادة والأطفال":{beneficiaries:"300,000",employees:"1,600",visitors:"+620"},
-  "مستشفى البكيرية":{beneficiaries:"170,000",employees:"650",visitors:"+320"},
-  "مستشفى بريدة المركزي":{beneficiaries:"290,000",employees:"1,700",visitors:"+550"},
+  "مستشفى الملك سعود بعنيزة":{beneficiaries:"400,000",employees:"1,600",visitors:"+1400"}, 
+  "مستشفى الولادة والأطفال":{beneficiaries:"300,000",employees:"1,600",visitors:"+1000"},
+  "مستشفى البكيرية":{beneficiaries:"170,000",employees:"650",visitors:"+500"},
+  "مستشفى بريدة المركزي":{beneficiaries:"290,000",employees:"1,700",visitors:"+1000"},
   "مركز السكري":{beneficiaries:"",employees:"300",visitors:"+1,000"},
-  "مستشفى الرس":{beneficiaries:"250,000",employees:"1,500",visitors:"+550"},
-  "مستشفى عيون الجواء":{beneficiaries:"95,000",employees:"500",visitors:"+180"},
-  "مستشفى المذنب":{beneficiaries:"100,000",employees:"600",visitors:"+170"},
-  "مستشفى الأسياح":{beneficiaries:"100,000",employees:"300",visitors:"+150"},
-  "مستشفى إرادة والصحة النفسية":{beneficiaries:"",employees:"",visitors:""},
+  "مستشفى الرس":{beneficiaries:"250,000",employees:"1,500",visitors:"+1300"},
+  "مستشفى عيون الجواء":{beneficiaries:"95,000",employees:"500",visitors:"+450"},
+  "مستشفى المذنب":{beneficiaries:"100,000",employees:"600",visitors:"+450"},
+  "مستشفى الأسياح":{beneficiaries:"100,000",employees:"300",visitors:"+300"},
+  "مستشفى إرادة والصحة النفسية":{beneficiaries:"",employees:"",visitors:"+200"},
   "مستشفى الملك فهد التخصصي":{beneficiaries:"290,000",employees:"2,400",visitors:""}
 };
 const APPLY_EMAIL="QHC-RDINV@MOH.GOV.SA";
