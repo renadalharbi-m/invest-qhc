@@ -256,7 +256,7 @@ body{
     </button>
   </nav>
 
-  <div class="section-title"><i></i><h2>سجّل اهتمامك</h2></div>
+  <div class="section-title"><i></i><h2>سجّل اهتمامك  بفرصة غير مطروحة</h2></div>
 
   <form class="lead" id="lead" name="interest" method="POST" data-netlify="true" netlify-honeypot="bot-field">
     <input type="hidden" name="form-name" value="interest">
@@ -341,7 +341,7 @@ const DATA = [
   ["food","مركز السكري","06-26-183737-41010","40","2026-09-21","2026-10-26","","","https://maps.app.goo.gl/7c8b9vWa1ggYpTWD8"],
   ["food","مستشفى الملك سعود بعنيزة","26-09-2445638","16","2026-09-22","2026-10-27","","","https://maps.app.goo.gl/b3MEb72oa6K62sxg6"],
   ["food","مستشفى الولادة والأطفال","06-26-183737-44004","20.16","2026-09-22","2026-10-27","","","https://maps.app.goo.gl/xp7wWnUNnWgostMo6"],
-  ["food","مستشفى المذنب","06-26-183737-44005","4×5","2026-09-22","2026-10-27","","","https://maps.app.goo.gl/hwHV96fyDQrLcs6d7"],
+  ["food","مستشفى المذنب","06-26-183737-44005","20","2026-09-22","2026-10-27","","","https://maps.app.goo.gl/hwHV96fyDQrLcs6d7"],
   ["food","مستشفى الرس","06-26-183737-44006","40","2026-09-22","2026-10-27","","","https://maps.app.goo.gl/bDw8rAGvV8XNeHXC9"],
   ["food","مستشفى بريدة المركزي","06-26-183737-44007","40","2026-09-22","2026-10-27","","","https://maps.app.goo.gl/TNrtoLnPXKbEKSKJ9"],
   ["market","مستشفى بريدة المركزي","26-09-2448107","50","2026-09-27","2026-10-28","","","https://maps.app.goo.gl/TNrtoLnPXKbEKSKJ9"],
@@ -354,22 +354,22 @@ const DATA = [
   ["flower","مستشفى الملك فهد التخصصي","06-26-183737-50002","36","2026-09-27","2026-11-01","","","https://maps.app.goo.gl/QHL8Sak3CiQjuL2P6"],
   ["flower","مستشفى الملك سعود بعنيزة","06-26-183737-47006","16","2026-09-27","2026-10-29","","","https://maps.app.goo.gl/Rgzfysg8YysJ37vB8"],
   ["flower","مستشفى الولادة والأطفال","06-26-183737-47007","20.16","2026-09-27","2026-10-29","","","https://maps.app.goo.gl/fKfuTs88GRsnYGsC8"],
-  ["flower","مستشفى الرس","06-26-183737-50001","4×4","2026-09-27","2026-10-29","","","https://maps.app.goo.gl/bDw8rAGvV8XNeHXC9"],
+  ["flower","مستشفى الرس","06-26-183737-50001","16","2026-09-27","2026-10-29","","","https://maps.app.goo.gl/bDw8rAGvV8XNeHXC9"],
   ["flower","مستشفى الملك فهد التخصصي","06-26-183737-50003","36","2026-09-28","2026-11-01","","","https://maps.app.goo.gl/QHL8Sak3CiQjuL2P6"]
 ];
 // عدد المستفيدين والموظفين والزوار اليومي لكل منشأة (الزوار يوميًا = (OPD+IP+ER) ÷ 365) (عبّي الأرقام بين علامتي التنصيص)
 const SITES={
-  "مستشفى الملك سعود بعنيزة":{beneficiaries:"400,000",employees:"1,600",visitors:"+44,000"}, 
-  "مستشفى الولادة والأطفال":{beneficiaries:"300,000",employees:"1,600",visitors:"+46,000"},
-  "مستشفى البكيرية":{beneficiaries:"170,000",employees:"650",visitors:"+24,000"},
-  "مستشفى بريدة المركزي":{beneficiaries:"290,000",employees:"1,700",visitors:"+38,000"},
-  "مركز السكري":{beneficiaries:"",employees:"300",visitors:"+22,000"},
-  "مستشفى الرس":{beneficiaries:"250,000",employees:"1,500",visitors:"+41,000"},
-  "مستشفى عيون الجواء":{beneficiaries:"95,000",employees:"500",visitors:"+20,000"},
-  "مستشفى المذنب":{beneficiaries:"100,000",employees:"600",visitors:"+19,000"},
-  "مستشفى الأسياح":{beneficiaries:"100,000",employees:"300",visitors:"+12,000"},
-  "مستشفى إرادة والصحة النفسية":{beneficiaries:"",employees:"",visitors:"+7,000"},
-  "مستشفى الملك فهد التخصصي":{beneficiaries:"290,000",employees:"2,400",visitors:"66,000"}
+  "مستشفى الملك سعود بعنيزة":{beneficiaries:"400,000",employees:"+1,600",visitors:"+44,000"}, 
+  "مستشفى الولادة والأطفال":{beneficiaries:"300,000",employees:"+1,600",visitors:"+46,000"},
+  "مستشفى البكيرية":{beneficiaries:"170,000",employees:"+650",visitors:"+24,000"},
+  "مستشفى بريدة المركزي":{beneficiaries:"290,000",employees:"+1,700",visitors:"+38,000"},
+  "مركز السكري":{beneficiaries:"",employees:"+300",visitors:"+22,000"},
+  "مستشفى الرس":{beneficiaries:"250,000",employees:"+1,500",visitors:"+41,000"},
+  "مستشفى عيون الجواء":{beneficiaries:"95,000",employees:"+500",visitors:"+20,000"},
+  "مستشفى المذنب":{beneficiaries:"100,000",employees:"+600",visitors:"+19,000"},
+  "مستشفى الأسياح":{beneficiaries:"100,000",employees:"+300",visitors:"+12,000"},
+  "مستشفى إرادة والصحة النفسية":{beneficiaries:"",employees:"+900",visitors:"+7,000"},
+  "مستشفى الملك فهد التخصصي":{beneficiaries:"+290,000",employees:"2,400",visitors:"66,000"}
 };
 const APPLY_EMAIL="QHC-RDINV@MOH.GOV.SA";
 const TYPE={cafe:"مقهى",food:"مطعم",market:"سوبرماركت",flower:"محل ورد"};
@@ -402,9 +402,9 @@ function render(){
   $("list").innerHTML=items.map(o=>{
     const s=SITES[o.site]||{};
     const val=v=>v?`<b class="num">${v}</b>`:`<b class="tbd">—</b>`;
-    const subj=`طلب تقديم على فرصة: ${TYPE[o.type]} - ${o.site} (${o.ad})`;
-    const body=`السلام عليكم،\n\nأرغب بالتقديم على الفرصة التالية:\nالنشاط: ${TYPE[o.type]}\nالموقع: ${o.site}\nرقم الإعلان: ${o.ad}\n\nالاسم:\nاسم المشروع:\nرقم الجوال:\n`;
-    const link=`<a class="btn primary" href="mailto:${APPLY_EMAIL}?subject=${encodeURIComponent(subj)}&body=${encodeURIComponent(body)}">قدّم على الفرصة</a>`;
+    const subj=`تقديم عطاء (العرض المالي والفني): ${TYPE[o.type]} - ${o.site} (${o.ad})`;
+   const body=`السلام عليكم،\n\nأرغب بالتقديم على الفرصة التالية:\nالنشاط: ${TYPE[o.type]}\nالموقع: ${o.site}\nرقم الإعلان: ${o.ad}\n\nالاسم:\nاسم المشروع:\nرقم الجوال:\n\nالمرفقات المطلوبة (تقديم العطاء):\n- العرض الفني\n- العرض المالي\n\n⚠️ تنبيه: يُعدّ إرفاق ملفي العرض الفني والعرض المالي شرطًا أساسيًا للتقديم، وعدم إرفاقهما قد يؤدي إلى استبعاد الطلب وفقدان الفرصة.\n`;
+const link=`<a class="btn primary" href="mailto:${APPLY_EMAIL}?subject=${encodeURIComponent(subj)}&body=${encodeURIComponent(body)}">قدّم على الفرصة</a>`;
     return `<article class="opp">
       <div class="opp-top">
         <div><h3>${o.site}</h3><div class="tag">${TYPE[o.type]}${o.extra?" · "+o.extra:""}</div></div>
