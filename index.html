@@ -9,7 +9,7 @@
 4) إيميل التقديم .............. (APPLY_EMAIL)
 5) قائمة الفرص ................ (const DATA)
    كل سطر = فرصة: [النشاط, المستشفى, رقم الإعلان, المساحة, تاريخ الإعلان, آخر موعد, ملاحظة, رابط, رابط الخريطة]
-   النشاط: cafe = مقاهي، food = مطاعم، market = سوبرماركت، flower = ورد
+   النشاط: cafe = مقاهي، food = مطاعم، market = سوبرماركت، flower = ورد، chocolate =  متاجر شوكولاتة، nursery = حضانة، gym = نادي صحي
    التواريخ بصيغة: 2026-10-18
 6) أرقام كل مستشفى ............ (const SITES)
    visitors = الزوار يوميًا، employees = الموظفين
@@ -19,7 +19,6 @@
 بعد أي تعديل: احفظي الملف، وارفعي المجلد كامل (index.html + logo.png) من Deploys في Netlify.
 =======================================================
 -->
-
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
@@ -60,23 +59,17 @@ body{
 .top{display:flex; align-items:center; justify-content:space-between; padding:18px 20px}
 .top img{height:46px; width:auto; display:block}
 .logo-box{background:transparent}
-.badge{font-size:12px; font-weight:700; color:#fff; background:var(--navy); padding:6px 12px; border-radius:999px}
 
 .hero{position:relative; margin:4px 16px 0; padding:26px 22px 24px; border-radius:22px; color:#fff;
   background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 100%); overflow:hidden}
 .hero .accent{position:absolute; right:0; top:22px; width:6px; height:48px; background:var(--sky); border-radius:6px 0 0 6px}
 .hero h1{margin:0; font-weight:800; font-size:28px; line-height:1.35; position:relative}
-.hero p{margin:8px 0 0; font-size:15px; line-height:1.7; opacity:.9; position:relative; max-width:30ch}
 
 .kpis{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:14px 16px 0}
 .kpi{background:var(--card); border-radius:18px; padding:14px 16px; display:flex; align-items:center; gap:12px}
-.kpi.sky{background:var(--sky); color:#fff}
-.kpi .ico{width:40px; height:40px; border-radius:11px; background:#fff; display:grid; place-items:center; flex:none}
-.kpi:not(.sky) .ico{background:var(--navy)}
-.kpi .ico svg{width:22px; height:22px; stroke:var(--navy); fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round}
-.kpi:not(.sky) .ico svg{stroke:#fff}
-.kpi b{display:block; font-size:24px; line-height:1.1}
-.kpi:not(.sky) b{color:var(--ink)}
+.kpi .ico{width:40px; height:40px; border-radius:11px; background:var(--navy); display:grid; place-items:center; flex:none}
+.kpi .ico svg{width:22px; height:22px; stroke:#fff; fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round}
+.kpi b{display:block; font-size:24px; line-height:1.1; color:var(--ink)}
 .kpi span{font-size:13px; opacity:.9}
 
 .section-title{display:flex; align-items:center; gap:10px; margin:26px 20px 12px}
@@ -96,7 +89,6 @@ body{
 .pill .ico svg{width:26px; height:26px; stroke:var(--navy); fill:none; stroke-width:1.9; stroke-linecap:round; stroke-linejoin:round}
 .pill .label{flex:1}
 .pill .label b{display:block; font-size:19px; font-weight:800}
-.pill .label small{font-size:13px; opacity:.88}
 .pill .count{font-size:22px; font-weight:800; min-width:36px; text-align:center}
 .pill .chev{width:18px; height:18px; stroke:#fff; fill:none; stroke-width:2.4; opacity:.8}
 
@@ -110,7 +102,6 @@ body{
 .hp{position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden}
 .f{display:flex; flex-direction:column; gap:6px; border:0; margin:0; padding:0; min-width:0}
 .f span,.f legend{font-size:14px; font-weight:700; color:var(--ink); padding:0}
-.f em{color:var(--warn); font-style:normal}
 .f input,.f select,.f textarea{
   width:100%; font:500 16px/1.4 inherit; font-family:inherit; color:var(--text); background:var(--bg);
   border:1.5px solid var(--line); border-radius:12px; padding:11px 12px; -webkit-appearance:none; appearance:none}
@@ -118,29 +109,23 @@ body{
   background-position:14px 50%; background-repeat:no-repeat; padding-left:36px}
 .f input:focus,.f select:focus,.f textarea:focus{outline:none; border-color:var(--sky); box-shadow:0 0 0 3px rgba(40,170,225,.2)}
 .f textarea{resize:vertical}
-.row2{display:grid; grid-template-columns:1fr 1fr; gap:10px}
-@media (max-width:360px){.row2{grid-template-columns:1fr}}
 .checks{display:flex; gap:8px; flex-wrap:wrap; margin-top:6px}
 .ck{position:relative}
 .ck input{position:absolute; opacity:0; inset:0; margin:0; cursor:pointer}
 .ck span{display:block; padding:8px 16px; border-radius:999px; border:1.5px solid var(--line); background:var(--bg); font-size:14px; font-weight:700; color:var(--ink)}
 .ck input:checked + span{background:var(--navy); border-color:var(--navy); color:#fff}
-.ck input:focus-visible + span{outline:3px solid var(--sky); outline-offset:2px}
 .consent{display:flex; gap:10px; align-items:flex-start; font-size:13px; line-height:1.6; color:var(--muted)}
 .consent input{width:20px; height:20px; margin-top:2px; accent-color:var(--navy); flex:none}
 .submit{height:50px; border:0; border-radius:14px; background:var(--navy); color:#fff; font:800 17px/1 inherit; font-family:inherit; cursor:pointer}
 .submit:disabled{opacity:.6; cursor:default}
-.submit:focus-visible{outline:3px solid var(--sky); outline-offset:2px}
 .msg{margin:0; font-size:14px; font-weight:700; text-align:center; min-height:1em}
 .msg.ok{color:var(--ok)} .msg.err{color:var(--warn)}
 .note{margin:18px 16px 0; background:var(--card); border:1.5px solid var(--line); border-radius:18px; padding:14px 16px; display:flex; gap:12px; align-items:center}
 .note .ico{width:40px; height:40px; border-radius:11px; background:var(--navy); display:grid; place-items:center; flex:none}
 .note .ico svg{width:22px; height:22px; stroke:#fff; fill:none; stroke-width:1.9; stroke-linecap:round; stroke-linejoin:round}
 .note p{margin:0; font-size:14px; line-height:1.6}
-.note p b{color:var(--ink)}
 .note .mail{color:var(--sky); font-weight:700; text-decoration:underline}
 
-/* Sheet */
 .scrim{position:fixed; inset:0; background:rgba(12,30,60,.5); opacity:0; pointer-events:none; transition:opacity .25s; z-index:10}
 .scrim.open{opacity:1; pointer-events:auto}
 .sheet{position:fixed; left:0; right:0; bottom:0; margin:0 auto; max-width:430px; height:88%;
@@ -157,9 +142,14 @@ body{
 .sheet-head h2{margin:0; font-size:21px; font-weight:800}
 .sheet-head small{font-size:13px; opacity:.85}
 .close{width:38px; height:38px; border-radius:50%; border:0; background:rgba(255,255,255,.16); color:#fff; font-size:18px; cursor:pointer; flex:none}
-.close:focus-visible{outline:2px solid #fff; outline-offset:2px}
 .filters{display:flex; gap:8px; margin-top:14px; overflow-x:auto; scrollbar-width:none}
 .filters::-webkit-scrollbar{display:none}
+.tsel{display:none; width:100%; margin-top:10px; font:500 14px/1.4 inherit; font-family:inherit; color:#fff; background-color:transparent;
+  border:1px solid rgba(255,255,255,.35); border-radius:12px; padding:9px 14px 9px 38px; -webkit-appearance:none; appearance:none; cursor:pointer;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='white' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-position:14px 50%; background-repeat:no-repeat}
+.tsel:focus-visible{outline:2px solid var(--sky); outline-offset:2px}
+.tsel option{color:#144888; background:#fff}
 .chip{flex:none; border:1px solid rgba(255,255,255,.35); background:transparent; color:#fff; padding:6px 14px; border-radius:999px; font:500 13px/1.4 inherit; font-family:inherit; cursor:pointer}
 .chip.on{background:var(--sky); border-color:var(--sky)}
 .list{flex:1; overflow-y:auto; padding:14px 14px 24px; display:flex; flex-direction:column; gap:12px}
@@ -181,21 +171,14 @@ body{
 .stat b{display:block; font-size:17px; color:var(--ink); line-height:1.2}
 .stat b.tbd{color:var(--muted)}
 .stat small{font-size:12px; color:var(--muted)}
-.left{margin-top:12px; font-size:13px; font-weight:700; display:inline-block; padding:4px 11px; border-radius:999px}
-.left.soon{background:var(--warnbg); color:var(--warn)}
-.left.ok{background:var(--okbg); color:var(--ok)}
-.left.gone{background:var(--line); color:var(--muted)}
 .actions{display:flex; gap:8px; margin-top:14px}
 .btn{flex:1; height:42px; border-radius:12px; font:700 14px/1 inherit; font-family:inherit; cursor:pointer; display:flex; align-items:center; justify-content:center; text-decoration:none}
 .btn.primary{background:var(--navy); color:#fff; border:0}
-.btn.primary[aria-disabled="true"]{background:var(--line); color:var(--muted); cursor:default}
 .btn.ghost{background:var(--soft); color:var(--ink); border:0}
-.btn:focus-visible{outline:3px solid var(--sky); outline-offset:2px}
 .btn.map{margin-top:14px; width:100%; flex:none; gap:8px; background:var(--card); color:var(--ink); border:1.5px solid var(--sky)}
 .btn.map svg{width:18px; height:18px; stroke:var(--sky); fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round}
 .toast{position:fixed; left:50%; bottom:calc(24px + env(safe-area-inset-bottom,0px)); transform:translate(-50%,20px); background:var(--navy); color:#fff; padding:10px 18px; border-radius:999px; font-size:14px; opacity:0; transition:all .2s; z-index:20; pointer-events:none}
 .toast.show{opacity:1; transform:translate(-50%,0)}
-@media (prefers-reduced-motion: reduce){*{transition:none !important}}
 </style>
 </head>
 <body>
@@ -254,6 +237,12 @@ body{
       <span class="count num" id="c-shop"></span>
       <svg class="chev" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>
     </button>
+    <button class="pill" data-cat="gym">
+      <span class="ico"><svg viewBox="0 0 24 24"><path d="M6.5 6.5v11M17.5 6.5v11M3.5 9v6M20.5 9v6M6.5 12h11"/></svg></span>
+      <span class="label"><b>نادي صحي</b></span>
+      <span class="count num" id="c-gym"></span>
+      <svg class="chev" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>
+    </button>
   </nav>
 
   <div class="section-title"><i></i><h2>سجّل اهتمامك  بفرصة غير مطروحة</h2></div>
@@ -275,6 +264,7 @@ body{
         <label class="ck"><input type="checkbox" name="activity" value="مقاهي"><span>مقاهي</span></label>
         <label class="ck"><input type="checkbox" name="activity" value="مطاعم"><span>مطاعم</span></label>
         <label class="ck"><input type="checkbox" name="activity" value="محلات"><span>محلات</span></label>
+        <label class="ck"><input type="checkbox" name="activity" value="نادي صحي"><span>نادي صحي</span></label>
       </div>
     </fieldset>
 
@@ -320,46 +310,43 @@ body{
       <button class="close" id="close" aria-label="إغلاق">✕</button>
     </div>
     <div class="filters" id="filters"></div>
+    <select class="tsel" id="tfilters" aria-label="نوع المحل"></select>
   </header>
   <div class="list" id="list"></div>
 </section>
 <div class="toast" id="toast"></div>
 
 <script>
-// [النشاط, الموقع, رقم الإعلان, المساحة م², تاريخ الإعلان, آخر موعد, ملاحظة, رابط الفرصة, رابط الخريطة]
-// ضع رابط كل فرصة في الخانة الأخيرة بين علامتي التنصيص
 const DATA = [
   ["cafe","مستشفى الملك سعود بعنيزة","06-26-183737-37010","30","2026-09-16","2026-10-18","","","https://maps.app.goo.gl/b3MEb72oa6K62sxg6"],
   ["cafe","مستشفى الولادة والأطفال","06-26-183737-37018","20.16","2026-09-17","2026-10-18","","","https://maps.app.goo.gl/zTJ5fpkWE1epKZYF7?g_st=ic"],
   ["cafe","مستشفى البكيرية","06-26-183737-37020","25","2026-09-17","2026-10-18","","","https://maps.app.goo.gl/kihVrup2i7iAPVCj6"],
-  ["cafe","مستشفى بريدة المركزي","26-09-2443110","60","2026-09-20","2026-10-25","+ 24 م² جلسات خارجية","","https://maps.app.goo.gl/p7v44Pg8jiVXmdPN6"],
+  ["cafe","مستشفى بريدة المركزي","06-26-183737-41004","60","2026-09-20","2026-10-25","+ 24 م² جلسات خارجية","","https://maps.app.goo.gl/p7v44Pg8jiVXmdPN6"],
   ["cafe","مركز السكري","06-26-183737-41006","30","2026-09-20","2026-10-25","","","https://maps.app.goo.gl/7c8b9vWa1ggYpTWD8"],
-  ["cafe","مستشفى الرس","26-09-2443526","36","2026-09-20","2026-10-25","","","https://maps.app.goo.gl/bDw8rAGvV8XNeHXC9"],
+  ["cafe","مستشفى الرس","06-26-183737-41007","36","2026-09-20","2026-10-25","","","https://maps.app.goo.gl/bDw8rAGvV8XNeHXC9"],
   ["cafe","مستشفى عيون الجواء","06-26-183737-41012","15","2026-09-21","2026-10-26","","","https://maps.app.goo.gl/Wg9fxGZojYuZJb7C6"],
-  ["cafe","مستشفى المذنب","26-09-2444170","33","2026-09-21","2026-10-26","","","https://maps.app.goo.gl/hwHV96fyDQrLcs6d7"],
+  ["cafe","مستشفى المذنب","06-26-183737-43003","33","2026-09-21","2026-10-26","","","https://maps.app.goo.gl/hwHV96fyDQrLcs6d7"],
   ["cafe","مستشفى الأسياح","06-26-183737-43004","15","2026-09-21","2026-10-26","","","https://maps.app.goo.gl/8iRKvuJP9SyFtu5YA"],
   ["food","مركز السكري","06-26-183737-41010","40","2026-09-21","2026-10-26","","","https://maps.app.goo.gl/7c8b9vWa1ggYpTWD8"],
-  ["food","مستشفى الملك سعود بعنيزة","26-09-2445638","16","2026-09-22","2026-10-27","","","https://maps.app.goo.gl/b3MEb72oa6K62sxg6"],
+  ["food","مستشفى الملك سعود بعنيزة","06-26-183737-44003","16","2026-09-22","2026-10-27","","","https://maps.app.goo.gl/b3MEb72oa6K62sxg6"],
   ["food","مستشفى الولادة والأطفال","06-26-183737-44004","20.16","2026-09-22","2026-10-27","","","https://maps.app.goo.gl/xp7wWnUNnWgostMo6"],
   ["food","مستشفى المذنب","06-26-183737-44005","20","2026-09-22","2026-10-27","","","https://maps.app.goo.gl/hwHV96fyDQrLcs6d7"],
   ["food","مستشفى الرس","06-26-183737-44006","40","2026-09-22","2026-10-27","","","https://maps.app.goo.gl/bDw8rAGvV8XNeHXC9"],
   ["food","مستشفى بريدة المركزي","06-26-183737-44007","40","2026-09-22","2026-10-27","","","https://maps.app.goo.gl/TNrtoLnPXKbEKSKJ9"],
-  ["market","مستشفى بريدة المركزي","26-09-2448107","50","2026-09-27","2026-10-28","","","https://maps.app.goo.gl/TNrtoLnPXKbEKSKJ9"],
+  ["market","مستشفى بريدة المركزي","06-26-183737-47002","50","2026-09-27","2026-10-28","","","https://maps.app.goo.gl/TNrtoLnPXKbEKSKJ9"],
   ["market","مستشفى الملك سعود بعنيزة","06-26-183737-47001","112.13","2026-09-27","2026-10-28","","","https://maps.app.goo.gl/b3MEb72oa6K62sxg6"],
   ["market","مستشفى الرس","06-26-183737-47004","50","2026-09-27","2026-10-28","","","https://maps.app.goo.gl/bDw8rAGvV8XNeHXC9"],
   ["market","مستشفى إرادة والصحة النفسية","06-26-183737-47003","25","2026-09-27","2026-10-28","","","https://maps.app.goo.gl/n7BWypWKizra8qAi7"],
   ["market","مستشفى عيون الجواء","06-26-183737-49001","300","2026-09-27","2026-10-28","","","https://maps.app.goo.gl/Wg9fxGZojYuZJb7C6"],
   ["market","مستشفى الأسياح","06-26-183737-49002","50","2026-09-27","2026-10-29","","","https://maps.app.goo.gl/8iRKvuJP9SyFtu5YA"],
   ["market","مستشفى المذنب","06-26-183737-49003","95","2026-09-27","2026-10-29","","","https://maps.app.goo.gl/hwHV96fyDQrLcs6d7"],
-  ["flower","مستشفى الملك فهد التخصصي","06-26-183737-50002","36","2026-09-27","2026-11-01","","","https://maps.app.goo.gl/QHL8Sak3CiQjuL2P6"],
   ["flower","مستشفى الملك سعود بعنيزة","06-26-183737-47006","16","2026-09-27","2026-10-29","","","https://maps.app.goo.gl/Rgzfysg8YysJ37vB8"],
   ["flower","مستشفى الولادة والأطفال","06-26-183737-47007","20.16","2026-09-27","2026-10-29","","","https://maps.app.goo.gl/fKfuTs88GRsnYGsC8"],
   ["flower","مستشفى الرس","06-26-183737-50001","16","2026-09-27","2026-10-29","","","https://maps.app.goo.gl/bDw8rAGvV8XNeHXC9"],
-  ["flower","مستشفى الملك فهد التخصصي","06-26-183737-50003","36","2026-09-28","2026-11-01","","","https://maps.app.goo.gl/QHL8Sak3CiQjuL2P6"]
+  ["flower","مستشفى الملك فهد التخصصي","06-26-183737-50004","36","2026-09-28","2026-11-01","","","https://maps.app.goo.gl/QHL8Sak3CiQjuL2P6"]
 ];
-// عدد المستفيدين والموظفين والزوار اليومي لكل منشأة (الزوار يوميًا = (OPD+IP+ER) ÷ 365) (عبّي الأرقام بين علامتي التنصيص)
 const SITES={
-  "مستشفى الملك سعود بعنيزة":{beneficiaries:"400,000",employees:"+1,600",visitors:"+44,000"}, 
+  "مستشفى الملك سعود بعنيزة":{beneficiaries:"400,000",employees:"+1,600",visitors:"+44,000"},
   "مستشفى الولادة والأطفال":{beneficiaries:"300,000",employees:"+1,600",visitors:"+46,000"},
   "مستشفى البكيرية":{beneficiaries:"170,000",employees:"+650",visitors:"+24,000"},
   "مستشفى بريدة المركزي":{beneficiaries:"290,000",employees:"+1,700",visitors:"+38,000"},
@@ -369,17 +356,17 @@ const SITES={
   "مستشفى المذنب":{beneficiaries:"100,000",employees:"+600",visitors:"+19,000"},
   "مستشفى الأسياح":{beneficiaries:"100,000",employees:"+300",visitors:"+12,000"},
   "مستشفى إرادة والصحة النفسية":{beneficiaries:"",employees:"+900",visitors:"+7,000"},
-  "مستشفى الملك فهد التخصصي":{beneficiaries:"+290,000",employees:"2,400",visitors:"66,000"}
+  "مستشفى الملك فهد التخصصي":{beneficiaries:"+290,000",employees:"+2,400",visitors:"+66,000"}
 };
 const APPLY_EMAIL="QHC-RDINV@MOH.GOV.SA";
-const TYPE={cafe:"مقهى",food:"مطعم",market:"سوبرماركت",flower:"محل ورد"};
+const TYPE={cafe:"مقهى",food:"مطعم",market:"سوبرماركت",flower:"محل ورد",chocolate:"محل شوكولاتة",nursery:"حضانة",gym:"نادي صحي"};
+const TCHIPS={flower:"محلات ورد",market:"سوبر ماركت",chocolate:"شوكولاتة",nursery:"حضانة"};
 const ICONS={};
 document.querySelectorAll(".pill").forEach(p=>ICONS[p.dataset.cat]=p.querySelector(".ico").innerHTML);
-const CATS={cafe:{title:"المقاهي",types:["cafe"]},food:{title:"المطاعم",types:["food"]},shop:{title:"المحلات",types:["market","flower"]}};
+const CATS={cafe:{title:"المقاهي",types:["cafe"]},food:{title:"المطاعم",types:["food"]},shop:{title:"المحلات",types:["market","flower","chocolate","nursery"]},gym:{title:"النادي الصحي",types:["gym"]}};
 const opps=DATA.map(r=>({type:r[0],site:r[1],ad:r[2],area:r[3],pub:r[4],due:r[5],extra:r[6],link:r[7],map:r[8]||""}));
 const $=id=>document.getElementById(id);
 const fmt=d=>d.split("-").reverse().join("/");
-function daysLeft(due){const t=new Date();t.setHours(0,0,0,0);return Math.round((new Date(due+"T00:00:00")-t)/86400000)}
 const sum=f=>Object.values(SITES).reduce((a,s)=>a+(parseInt(String(s[f]||"").replace(/[^0-9]/g,""))||0),0);
 const rnd=(v,step)=>(Math.round(v/step)*step).toLocaleString("en-US");
 $("t-emp").textContent="+"+rnd(sum("employees"),1000);
@@ -388,7 +375,7 @@ $("k-total").textContent=opps.length;
 $("k-sites").textContent=new Set(opps.map(o=>o.site)).size;
 Object.keys(CATS).forEach(k=>$("c-"+k).textContent=opps.filter(o=>CATS[k].types.includes(o.type)).length);
 
-let current=null,filter="all",lastBtn=null;
+let current=null,filter="all",tfilter="all",lastBtn=null;
 function render(){
   const cat=CATS[current];
   let items=opps.filter(o=>cat.types.includes(o.type));
@@ -397,14 +384,21 @@ function render(){
   $("sheet-title").textContent=cat.title;
   $("sheet-sub").textContent=items.length+" فرصة متاحة";
   $("filters").innerHTML=["all",...sites].map(s=>`<button class="chip ${s===filter?"on":""}" data-f="${s}">${s==="all"?"الكل":s.replace("مستشفى ","")}</button>`).join("");
+  const tf=$("tfilters");
+  if(current==="shop"){
+    tf.style.display="block";
+    tf.innerHTML=["all",...Object.keys(TCHIPS)].map(t=>`<option value="${t}">${t==="all"?"كل المحلات":TCHIPS[t]}</option>`).join("");
+    tf.value=tfilter;
+  }else{tf.innerHTML="";tf.style.display="none"}
   if(filter!=="all")items=items.filter(o=>o.site===filter);
+  if(tfilter!=="all")items=items.filter(o=>o.type===tfilter);
   items.sort((a,b)=>a.due.localeCompare(b.due));
   $("list").innerHTML=items.map(o=>{
     const s=SITES[o.site]||{};
     const val=v=>v?`<b class="num">${v}</b>`:`<b class="tbd">—</b>`;
     const subj=`تقديم عطاء (العرض المالي والفني): ${TYPE[o.type]} - ${o.site} (${o.ad})`;
-   const body=`السلام عليكم،\n\nأرغب بالتقديم على الفرصة التالية:\nالنشاط: ${TYPE[o.type]}\nالموقع: ${o.site}\nرقم الإعلان: ${o.ad}\n\nالاسم:\nاسم المشروع:\nرقم الجوال:\n\nالمرفقات المطلوبة (تقديم العطاء):\n- العرض الفني\n- العرض المالي\n\n⚠️ تنبيه: يُعدّ إرفاق العرض الفني والعرض المالي شرطًا أساسيًا للتقديم، وعدم إرفاقهما قد يؤدي إلى استبعاد الطلب وفقدان الفرصة.\n`;
-const link=`<a class="btn primary" href="mailto:${APPLY_EMAIL}?subject=${encodeURIComponent(subj)}&body=${encodeURIComponent(body)}">قدّم على الفرصة</a>`;
+    const body=`السلام عليكم،\n\nأرغب بالتقديم على الفرصة التالية:\nالنشاط: ${TYPE[o.type]}\nالموقع: ${o.site}\nرقم الإعلان: ${o.ad}\n\nالاسم:\nاسم المشروع:\nرقم الجوال:\n\nالمرفقات المطلوبة (تقديم العطاء):\n- العرض الفني\n- العرض المالي\n\n⚠️ تنبيه: يُعدّ إرفاق العرض الفني والعرض المالي شرطًا أساسيًا للتقديم، وعدم إرفاقهما قد يؤدي إلى استبعاد الطلب وفقدان الفرصة.\n`;
+    const link=`<a class="btn primary" href="mailto:${APPLY_EMAIL}?subject=${encodeURIComponent(subj)}&body=${encodeURIComponent(body)}">قدّم على الفرصة</a>`;
     return `<article class="opp">
       <div class="opp-top">
         <div><h3>${o.site}</h3><div class="tag">${TYPE[o.type]}${o.extra?" · "+o.extra:""}</div></div>
@@ -422,13 +416,15 @@ const link=`<a class="btn primary" href="mailto:${APPLY_EMAIL}?subject=${encodeU
       <div class="actions">${link}<button class="btn ghost" data-copy="${o.ad}">نسخ رقم الإعلان</button></div>
     </article>`;
   }).join("");
+  if(!items.length)$("list").innerHTML='<div class="tag" style="text-align:center;padding:30px 0">لا توجد فرص حالياً</div>';
 }
-function openSheet(k,btn){current=k;filter="all";lastBtn=btn;render();$("list").scrollTop=0;$("sheet").classList.add("open");$("scrim").classList.add("open");document.body.style.overflow="hidden";$("close").focus()}
+function openSheet(k,btn){current=k;filter="all";tfilter="all";lastBtn=btn;render();$("list").scrollTop=0;$("sheet").classList.add("open");$("scrim").classList.add("open");document.body.style.overflow="hidden";$("close").focus()}
 function closeSheet(){$("sheet").classList.remove("open");$("scrim").classList.remove("open");document.body.style.overflow="";if(lastBtn)lastBtn.focus()}
 document.querySelectorAll(".pill").forEach(b=>b.addEventListener("click",()=>openSheet(b.dataset.cat,b)));
 $("close").onclick=closeSheet;$("scrim").onclick=closeSheet;
 document.addEventListener("keydown",e=>{if(e.key==="Escape")closeSheet()});
 $("filters").addEventListener("click",e=>{const c=e.target.closest(".chip");if(!c)return;filter=c.dataset.f;render()});
+$("tfilters").addEventListener("change",e=>{tfilter=e.target.value;render()});
 function toast(m){const t=$("toast");t.textContent=m;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),1600)}
 $("list").addEventListener("click",async e=>{
   const b=e.target.closest("[data-copy]");if(!b)return;const v=b.dataset.copy;
@@ -446,7 +442,6 @@ lead.addEventListener("submit",async e=>{
     if(!res.ok) throw new Error(res.status);
     lead.reset(); leadMsg.className="msg ok"; leadMsg.textContent="تم استلام طلبك، وبنتواصل معك قريبًا. شكرًا لك!";
   }catch(err){
-    // بديل مضمون: يفتح رسالة بريد جاهزة فيها بيانات الفورم
     const fd=new FormData(lead), g=k=>fd.getAll(k).filter(Boolean).join("، ")||"—";
     const body=`السلام عليكم،\n\nأرغب بتسجيل اهتمامي بالفرص الاستثمارية:\n\nالاسم: ${g("name")}\nاسم المشروع: ${g("project")}\nرقم الجوال: ${g("phone")}\nالنشاط المهتم به: ${g("activity")}\nالمنشأة المفضلة: ${g("site")}\nملاحظات: ${g("notes")}\n`;
     location.href=`mailto:${APPLY_EMAIL}?subject=${encodeURIComponent("تسجيل اهتمام بالفرص الاستثمارية")}&body=${encodeURIComponent(body)}`;
