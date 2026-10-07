@@ -9,7 +9,7 @@
 4) إيميل التقديم .............. (APPLY_EMAIL)
 5) قائمة الفرص ................ (const DATA)
    كل سطر = فرصة: [النشاط, المستشفى, رقم الإعلان, المساحة, تاريخ الإعلان, آخر موعد, ملاحظة, رابط, رابط الخريطة]
-   النشاط: cafe = مقاهي، food = مطاعم، market = سوبرماركت، flower = ورد، chocolate =  متاجر شوكولاتة، nursery = حضانة، gym = نادي صحي
+   النشاط: cafe = مقاهي، food = مطاعم، market = سوبرماركت، flower = ورد، chocolate = شوكولاتة، nursery = حضانة، gym = نادي رياضي
    التواريخ بصيغة: 2026-10-18
 6) أرقام كل مستشفى ............ (const SITES)
    visitors = الزوار يوميًا، employees = الموظفين
@@ -239,7 +239,7 @@ body{
     </button>
     <button class="pill" data-cat="gym">
       <span class="ico"><svg viewBox="0 0 24 24"><path d="M6.5 6.5v11M17.5 6.5v11M3.5 9v6M20.5 9v6M6.5 12h11"/></svg></span>
-      <span class="label"><b>نادي صحي</b></span>
+      <span class="label"><b>نادي رياضي</b></span>
       <span class="count num" id="c-gym"></span>
       <svg class="chev" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>
     </button>
@@ -264,7 +264,7 @@ body{
         <label class="ck"><input type="checkbox" name="activity" value="مقاهي"><span>مقاهي</span></label>
         <label class="ck"><input type="checkbox" name="activity" value="مطاعم"><span>مطاعم</span></label>
         <label class="ck"><input type="checkbox" name="activity" value="محلات"><span>محلات</span></label>
-        <label class="ck"><input type="checkbox" name="activity" value="نادي صحي"><span>نادي صحي</span></label>
+        <label class="ck"><input type="checkbox" name="activity" value="نادي رياضي"><span>نادي رياضي</span></label>
       </div>
     </fieldset>
 
@@ -343,7 +343,8 @@ const DATA = [
   ["flower","مستشفى الملك سعود بعنيزة","06-26-183737-47006","16","2026-09-27","2026-10-29","","","https://maps.app.goo.gl/Rgzfysg8YysJ37vB8"],
   ["flower","مستشفى الولادة والأطفال","06-26-183737-47007","20.16","2026-09-27","2026-10-29","","","https://maps.app.goo.gl/fKfuTs88GRsnYGsC8"],
   ["flower","مستشفى الرس","06-26-183737-50001","16","2026-09-27","2026-10-29","","","https://maps.app.goo.gl/bDw8rAGvV8XNeHXC9"],
-  ["flower","مستشفى الملك فهد التخصصي","06-26-183737-50004","36","2026-09-28","2026-11-01","","","https://maps.app.goo.gl/QHL8Sak3CiQjuL2P6"]
+  ["flower","مستشفى الملك فهد التخصصي","06-26-183737-50004","36","2026-09-28","2026-11-01","","","https://maps.app.goo.gl/QHL8Sak3CiQjuL2P6"],
+  ["gym","مستشفى الملك فهد التخصصي","06-26-183737-66004","200","2026-10-06","2026-11-05","","","https://maps.app.goo.gl/QHL8Sak3CiQjuL2P6"]
 ];
 const SITES={
   "مستشفى الملك سعود بعنيزة":{beneficiaries:"400,000",employees:"+1,600",visitors:"+44,000"},
@@ -359,11 +360,11 @@ const SITES={
   "مستشفى الملك فهد التخصصي":{beneficiaries:"+290,000",employees:"+2,400",visitors:"+66,000"}
 };
 const APPLY_EMAIL="QHC-RDINV@MOH.GOV.SA";
-const TYPE={cafe:"مقهى",food:"مطعم",market:"سوبرماركت",flower:"محل ورد",chocolate:"محل شوكولاتة",nursery:"حضانة",gym:"نادي صحي"};
+const TYPE={cafe:"مقهى",food:"مطعم",market:"سوبرماركت",flower:"محل ورد",chocolate:"محل شوكولاتة",nursery:"حضانة",gym:"نادي رياضي"};
 const TCHIPS={flower:"محلات ورد",market:"سوبر ماركت",chocolate:"شوكولاتة",nursery:"حضانة"};
 const ICONS={};
 document.querySelectorAll(".pill").forEach(p=>ICONS[p.dataset.cat]=p.querySelector(".ico").innerHTML);
-const CATS={cafe:{title:"المقاهي",types:["cafe"]},food:{title:"المطاعم",types:["food"]},shop:{title:"المحلات",types:["market","flower","chocolate","nursery"]},gym:{title:"النادي الصحي",types:["gym"]}};
+const CATS={cafe:{title:"المقاهي",types:["cafe"]},food:{title:"المطاعم",types:["food"]},shop:{title:"المحلات",types:["market","flower","chocolate","nursery"]},gym:{title:"النادي الرياضي",types:["gym"]}};
 const opps=DATA.map(r=>({type:r[0],site:r[1],ad:r[2],area:r[3],pub:r[4],due:r[5],extra:r[6],link:r[7],map:r[8]||""}));
 const $=id=>document.getElementById(id);
 const fmt=d=>d.split("-").reverse().join("/");
